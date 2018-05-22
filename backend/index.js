@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// Twitter API Credentials
 let client = new Twitter({
     consumer_key: 'BWZkEGkai2eYrWEmVbacMTdJi',
  	consumer_secret: 'y4IFoHISnRpGQbBUFgx51JaiHDxUEYknDoqp2tswijmevQdTtS',
@@ -26,18 +27,26 @@ let client = new Twitter({
 	access_token_secret: 'hG1oxxtR4HALvdg2yx99tR5ykCm0JiKJNHdCRO3TtvH6L'
 });
 
-let user = [];
+// Empty object to store the info we want about our user
+let user = {};
 
+// Hit the user endpoint and pass in the screen_name
 client.get('users/show', { screen_name: 'Drake' }, function(error, tweets, response) {
+
+    // if there's an error, console log it and return
     if(error) {
         console.log(error);
         return;
     }
 
+    // otherwise get the data from the body, parse and and store it in our blank object
     let json = JSON.parse(response.body)
     console.log(json.favourites_count);
 
 });
+
+
+// Create a GET endpoint for when user submits a 'screen_name' on front end
 
 
 // server setup
