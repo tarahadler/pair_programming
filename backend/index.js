@@ -31,17 +31,31 @@ let client = new Twitter({
 let user = {};
 
 // Hit the user endpoint and pass in the screen_name
-client.get('users/show', { screen_name: 'Drake' }, function(error, tweets, response) {
+// client.get('users/show', { screen_name: 'Drake' }, function(error, tweets, response) {
 
-    // if there's an error, console log it and return
+//     // if there's an error, console log it and return
+//     if(error) {
+//         console.log(error);
+//         return;
+//     }
+
+//     // otherwise get the data from the body, parse and and store it in our blank object
+//     let json = JSON.parse(response.body);
+//     console.log(json);
+
+// });
+
+
+// Hit endpoint for user timeline/statuses
+client.get('statuses/user_timeline', { screen_name: 'Drake', count: 100 }, function(error, tweets, response) {
+
     if(error) {
         console.log(error);
         return;
     }
 
-    // otherwise get the data from the body, parse and and store it in our blank object
-    let json = JSON.parse(response.body)
-    console.log(json.favourites_count);
+    let json = JSON.parse(response.body);
+    console.log(json);
 
 });
 
