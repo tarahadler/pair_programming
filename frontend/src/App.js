@@ -39,7 +39,8 @@ onSubmit = (e, username) => {
           retweetArr: results.data.retweet_count, 
           retweetTotal: results.data.total_retweets,
           favArr: results.data.favorite_count,
-          favTotal: results.data.total_favs
+          favTotal: results.data.total_favs,
+          username: this.refs.twitterHandle.value
          });
        })
        .catch(error => {
