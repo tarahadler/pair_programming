@@ -68,7 +68,7 @@ app.post('/username', (req, res) => {
             let the_tweets = JSON.parse(response.body);
 
             // get total retweet number
-            let total_rewteets = the_tweets.reduce((acc, curr) => {
+            let total_retweets = the_tweets.reduce((acc, curr) => {
                 return acc + curr.retweet_count
             }, 0);
 
@@ -78,7 +78,7 @@ app.post('/username', (req, res) => {
             }, 0);
 
             // get an array of numbers of retweets for last 100 items
-            let retweet_counts = the_tweets.map((elem) => {
+            let retweet_count = the_tweets.map((elem) => {
                 return elem.retweet_count
             });
 
@@ -90,9 +90,9 @@ app.post('/username', (req, res) => {
             // SEND BACK ALL THE DATA TO FRONTEND
             let info = {
                 user,
-                retweet_counts: retweet_counts,
+                retweet_count: retweet_count,
                 favorite_count: favorite_count,
-                total_rewteets: total_rewteets,
+                total_retweets: total_retweets,
                 total_favs: total_favs
             }
 
