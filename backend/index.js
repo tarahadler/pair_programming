@@ -1,10 +1,12 @@
 // required imports 
 const express = require('express'), 
-      app = express(); 
+      app = express();
 
 const util = require('util');
 const Twitter = require('twitter');
 const bodyParser = require('body-parser');
+
+const config = require('./config');
 
 // headers to fix CORS issues
 app.use((req, res, next) => {
@@ -21,10 +23,10 @@ app.use(bodyParser.json());
 
 // Twitter API Credentials
 let client = new Twitter({
-    consumer_key: 'BWZkEGkai2eYrWEmVbacMTdJi',
- 	consumer_secret: 'y4IFoHISnRpGQbBUFgx51JaiHDxUEYknDoqp2tswijmevQdTtS',
- 	access_token_key: '1138274636-mg5b7u1CPE4AEh2ZCxkECQ2PIovzBtf64mrhxPv',
-	access_token_secret: 'hG1oxxtR4HALvdg2yx99tR5ykCm0JiKJNHdCRO3TtvH6L'
+    consumer_key: config.CONSUMER_KEY,
+ 	consumer_secret: config.CONSUMER_SECRET,
+ 	access_token_key: config.ACCESS_TOKEN_KEY,
+	access_token_secret: config.ACCESS_TOKEN_SECRET
 });
 
 
