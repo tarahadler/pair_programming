@@ -1,12 +1,24 @@
-/*
-    Steel Blue: #3f7caa
-    Lightening: #fbc619
-    Carnation: #f74f5f;
-    Sunglo: #e36473
-    Monte Carlo: #7dc7a9
-    Dodger Blue: #35a7ff
-    Rhino: #2d335f
+$color__steelblue: #3f7caa;
+$color__lightening: #fbc619;
+$color__carnation: #f74f5f;
+$color__sunglo: #e36473;
+$color__montecarlo: #7dc7a9;
+$color__dodgerblue: #35a7ff;
+$color__rhino: #2d335f;
 
+$gutter: 16px;
+
+$padding--xxs: 8px;
+$padding--xs: 16px;
+$padding--sm: 32px;
+$padding--md: 48px;
+$padding--lg: 64px;
+$padding--xl: 96px;
+$padding--xxl: 132px;
+
+$page--maxwidth: 1140px;
+
+/*
     Doughnut: Lightening/Carnation
     Retweets/Favourites: Steel Blue/Sunglo
 */
