@@ -21,7 +21,7 @@ class Dashboard extends Component {
             labels: ['Followers', 'Following'],
             datasets: [{
                 data: [this.props.followersTotal, this.props.followingTotal],
-                backgroundColor: ['#DED419', '#78BDA7'],
+                backgroundColor: ['#fbc619', '#f74f5f'],
                 borderColor: 'rgba(0,0,0,0)'
             }]
         }
@@ -35,7 +35,7 @@ class Dashboard extends Component {
             labels: ['Faves', 'Retweets'],
             datasets: [{
                 data: [this.props.favTotal, this.props.retweetTotal],
-                backgroundColor: ['salmon', 'red'],
+                backgroundColor: ['#2d335f', '#7dc7a9'],
                 borderColor: 'rgba(0,0,0,0)'
             }]
         }
@@ -68,13 +68,13 @@ class Dashboard extends Component {
             datasets: [
                 {
                     label: "Retweets",
-                    borderColor: 'rgb(255, 99, 132)',
+                    borderColor: '#3f7caa',
                     backgroundColor: 'rgba(0,0,0,0)',
                     data: trimmedArr1
                 },
                 {
                     label: "Favourites",
-                    borderColor: 'rgb(240, 235, 29)',
+                    borderColor: '#e36473',
                     backgroundColor: 'rgba(0,0,0,0)',
                     data: trimmedArr2
                 }
@@ -95,7 +95,6 @@ class Dashboard extends Component {
 
         /* SCORE */
         let score = 0;
-        let followersTotalTrimmed = 0;
 
         if(this.props.verifiedStatus === true) {
             score += 10;
@@ -141,6 +140,18 @@ class Dashboard extends Component {
 
 
         /* Follower Count */
+        let followersTotalTrimmed = this.props.followersTotal +  '';
+
+        if (this.props.followersTotal > 10000000) {
+            followersTotalTrimmed = followersTotalTrimmed.split('').splice(0, 2).join('') + "M";
+        } else if (this.props.followersTotal > 1000000) {
+            followersTotalTrimmed = followersTotalTrimmed.split('').splice(0, 1).join('') + "M";
+        } else if (this.props.followersTotal > 100000) {
+            followersTotalTrimmed = followersTotalTrimmed.split('').splice(0, 3).join('') + "K";
+        } else {
+            followersTotalTrimmed = followersTotalTrimmed;
+        }
+
         /*if (this.props.followersTotal > 10000000) {
             followersTotalTrimmed = this.props.followersTotal.split('').splice(2, 6).join('') + "M";
         } else if (this.props.followersTotal > 1000000) {
@@ -156,44 +167,52 @@ class Dashboard extends Component {
         return (<main>
 
                 <header className="dashboard__header">
-                    <h2>This {this.props.username}'s dashboard.</h2>
+                    <h2>This is {this.props.username}'s dashboard.</h2>
                     <h1>Score: {score * 2}% </h1>
                 </header>
 
                 <section className="grid">
 
                     <article className="grid__item">
-                        <Doughnut data={chart_1_data} options={chart_1_options} width={250} />
+                        <Doughnut data={chart_1_data} options={chart_1_options} width={200} height={200} />
                     </article>
 
                     <article className="grid__item">
-                        <Doughnut data={chart_2_data} options={chart_2_options} width={250} /> 
+                        <Doughnut data={chart_2_data} options={chart_2_options} width={250} height={200} /> 
                     </article>
 
-                    <article className="grid__item flex">
+                    <article className="grid__item inner-grid">
 
                         <div className="card">
+                            <div className="card__content">
                             <i className="far fa-check-square"></i>
                             <h3>Verified Status</h3>
                             {this.props.verifiedStatus === true ? "Verified" : "Unverified" }
+                            </div>
                         </div>
 
                         <div className="card">
+                            <div className="card__content">
                             <i className="far fa-comment"></i> 
                             <h3>Total Tweets</h3>
                             {this.props.tweetTotal}
+                            </div>
                         </div>
 
                         <div className="card">
+                            <div className="card__content">
                             <i className="far fa-user-circle"></i>
                             <h3>Followers</h3>
-                            {this.props.followersTotal}
+                            {followersTotalTrimmed}
+                            </div>
                         </div>
 
                         <div className="card">
+                            <div className="card__content">
                             <i className="far fa-heart"></i>
                             <h3>Engagement</h3>
                             {engagementRateJSX}%
+                            </div>
                         </div>
 
                     </article>

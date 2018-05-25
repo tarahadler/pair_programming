@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
 
       // show or hide dashboard
-      dashboard: false,
+      dashboard: 'hidden',
 
       //Data received from Twitter API
       verifiedStatus: false,
@@ -26,7 +26,7 @@ class App extends Component {
 
       //Data sent to server
       username: ''
-      
+
     }
   };
 
@@ -53,7 +53,7 @@ onSubmit = (e, username) => {
             favArr: results.data.favorite_count,
             favTotal: results.data.total_favs,
             username: this.refs.twitterHandle.value,
-            dashboard: true
+            dashboard: 'visible'
          });
 
        })
@@ -64,25 +64,23 @@ onSubmit = (e, username) => {
 
   render() {
 
-    const style = {
-      display: this.state.dashboard === true ? 'block' : 'none'
-    }
-
     return (
       <div className="App">
 
         <div className="wrapper">
 
-          <h1>Twitter Dashboard</h1>
+          <h1 className="site-title">Twitter Sitter</h1>
+          
+          <section className="form">
+            <form>
+                <input type="text" ref="twitterHandle" className="input" placeholder="Enter a valid Twitter handle." required />  
+                <button className="btn" onClick={(e) => this.onSubmit(e, this.refs.twitterHandle.value) }> 
+                  <i className="fas fa-arrow-circle-right"></i>
+                </button> 
+            </form>
+          </section>
 
-          <form>
-              <input type="text" ref="twitterHandle" placeholder="Enter a valid Twitter handle." required />  
-              <button onClick={(e) => this.onSubmit(e, this.refs.twitterHandle.value) }> 
-                  Submit name 
-              </button> 
-          </form>
-
-          <div className="dashboard" style={style}>
+          <div className={'dashboard ' + this.state.dashboard }>
           <Dashboard verifiedStatus={this.state.verifiedStatus} 
                       followersTotal={this.state.followersTotal} 
                       followingTotal={this.state.followingTotal} 
