@@ -9,7 +9,7 @@ class Dashboard extends Component {
         let engagementRateJSX = 0;
 
         //Setting Engagement Rate to two decimal places only. 
-        engagementRateJSX = parseFloat((this.props.favTotal+ this.props.retweetTotal) / (this.props.followersTotal) + "").toFixed(2)
+        engagementRateJSX = parseFloat((this.props.favTotal+ this.props.retweetTotal) / (this.props.followersTotal) + '').toFixed(2)
 
         //If Engagement Rate is NaN, set to zero.  
         if (isNaN(engagementRateJSX)) {
@@ -44,25 +44,33 @@ class Dashboard extends Component {
             maintainAspectRatio: false,
         }
 
+        // Set a default value for our line chart yAxis
         let yAxisMax = 100;
 
+        // trim and splice the first array (retweets)
         let trimmedArr1 = Array.from(this.props.retweetArr);
         trimmedArr1.splice(10, (this.props.retweetArr.length - 10));
 
+        // trim and splice second array (faves)
         let trimmedArr2 = Array.from(this.props.favArr);
         trimmedArr2.splice(10, (this.props.favArr.length - 10));
 
+        // join the two together into one array
         let joinedArrs = [...trimmedArr1, ...trimmedArr2];
 
+        // sort them lowest to highest
         let trimmedArrSorted = joinedArrs.sort(function(a,b) {
             return a - b;
         });
 
+
+        // once we know page is loaded, set the yAxisMax to be the highest number in our joined
+        // arrays times 1.1 - will be used to set a yAxes on our line chart
         if(this.props.username !== "") {
             yAxisMax = Math.ceil((trimmedArrSorted[trimmedArrSorted.length - 1] * 1.1));
         }
 
-        // Line Chart:
+        // Line Chart: Faves and retweets over time
         let chart_3_data = {
             labels: ['1','2','3','4','5','6','7','8','9','10'],
             datasets: [
@@ -93,13 +101,17 @@ class Dashboard extends Component {
         }
 
 
-        /* SCORE */
+        /* SCORING */
+
+        // default
         let score = 0;
 
+        // if they are verified
         if(this.props.verifiedStatus === true) {
             score += 10;
         }
 
+        // How many tweets they have
         if(this.props.tweetTotal > 1000) {
             score += 10;
         } else if (this.props.tweetTotal > 750) {
@@ -114,6 +126,7 @@ class Dashboard extends Component {
             score += 0;
         }
 
+        // how much engagement they have
         if (engagementRateJSX > 0.7) {
             score += 20;
         } else if (engagementRateJSX > 0.2) {
@@ -124,6 +137,7 @@ class Dashboard extends Component {
             score += 0;
         }
 
+        // How many followers they have
         if (this.props.followersTotal > 1000000) {
             score += 10;
         } else if (this.props.followersTotal > 100000) {
@@ -139,7 +153,8 @@ class Dashboard extends Component {
         }
 
 
-        /* Follower Count */
+        // Follower Count
+        // Trim the follower count number for users with over 100,000
         let followersTotalTrimmed = this.props.followersTotal +  '';
 
         if (this.props.followersTotal > 10000000) {
@@ -152,25 +167,17 @@ class Dashboard extends Component {
             followersTotalTrimmed = followersTotalTrimmed;
         }
 
-        /*if (this.props.followersTotal > 10000000) {
-            followersTotalTrimmed = this.props.followersTotal.split('').splice(2, 6).join('') + "M";
-        } else if (this.props.followersTotal > 1000000) {
-            followersTotalTrimmed = this.props.followersTotal.split('').splice(1, 6).join('') + "M";
-        } else if (this.props.followersTotal > 100000) {
-            followersTotalTrimmed = this.props.followersTotal.split('').splice(3, 3).join('') + "K";
-        } else {
-            followersTotalTrimmed = this.props.followersTotal;
-        }*/
-
-
-
-        return (<main>
-
+        // Return
+        return (
+            <main>
+                
+                {/* Header (score) */}
                 <header className="dashboard__header">
-                    <h2>This is {this.props.username}'s dashboard.</h2>
-                    <h1>Score: {score * 2}% </h1>
+                    <h2>Sitter score for <span>@{this.props.username}</span></h2>
+                    <h4>{score * 2}%</h4>
                 </header>
 
+                {/* Main grid of data */}
                 <section className="grid">
 
                     <article className="grid__item">
@@ -222,9 +229,10 @@ class Dashboard extends Component {
                     </article>
 
                     <article className="grid__item">
-                        Embedded Tweet
+                        <blockquote className="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">✔️ updated Tweet compose box <br/><br/>The new Tweet compose box makes it possible for you to move more easily between your Tweet and timeline, so all of your Tweets are on point.</p>&mdash; Twitter (@Twitter) <a href="https://twitter.com/Twitter/status/999033114197446661?ref_src=twsrc%5Etfw">May 22, 2018</a></blockquote>
                     </article>
                     
+                    {/* Old stuff */}
                     {/*
                     <h2>Verified Status: {this.props.verifiedStatus === true ? "Verified" : "Unverified" }</h2>
                     <h2>Followers: {this.props.followersTotal}</h2> 
@@ -235,18 +243,6 @@ class Dashboard extends Component {
                     <h2>favArr: {this.props.favArr}</h2>
                     <h2>Faves: {this.props.favTotal}</h2>
                     <h2>Engagement Rate: {engagementRateJSX}%</h2>
-                    */}
-                    
-                    {/*
-                    <div className="chart">
-                    <Doughnut data={chart_1_data} options={chart_1_options} width={250} height={250}/>
-                    </div>
-                    <div className="chart">
-                    <Doughnut data={chart_2_data} options={chart_2_options} width={250} height={250} /> 
-                    </div>
-                    <div className="chart-alt">
-                    <Line data={chart_3_data} options={chart_3_options} height={400} />
-                    </div>
                     */}
                     
                 </section>

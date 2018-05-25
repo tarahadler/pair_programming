@@ -50,15 +50,18 @@ table {
   border-spacing: 0; }
 
 body {
-  background: #ededed; }
+  background: #e3e3e3; }
 
 .wrapper {
-  max-width: 1100px;
+  max-width: 1140px;
   margin: 0 auto;
   text-align: center; }
 
 header.dashboard__header {
-  padding: 32px 0; }
+  padding: 48px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 /* Grid */
 .grid {
@@ -73,7 +76,9 @@ header.dashboard__header {
     grid-row: 1 / span 2;
     grid-column: 3 / span 2; }
   .grid__item:nth-child(5) {
-    grid-column: 3 / span 2; }
+    border-top: 1px solid #bbb;
+    grid-column: 1 / span 4;
+    padding: 32px 0; }
   .grid__item:nth-child(4) {
     grid-column: 1 / span 2; }
 
@@ -90,27 +95,48 @@ header.dashboard__header {
   border: 1px solid #dfdfdf;
   font: 700 2rem/100% "Dosis", sans-serif;
   background: white;
+  border-radius: 3px;
   box-shadow: 0px 16px 48px -10px rgba(0, 0, 0, 0.4); }
   .card .card__content {
     width: 100%; }
   .card h3 {
-    font-size: 0.8rem;
+    font-size: 0.88rem;
     font-weight: 300;
+    padding: 5px 0 2px;
+    letter-spacing: 0.05rem;
     text-transform: uppercase; }
 
 /* Form */
 .form {
-  padding: 32px 0; }
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  margin: 16px 0;
+  background: white;
+  box-shadow: 0px 14px 38px -12px rgba(0, 0, 0, 0.33), 0px 8px 21px -10px rgba(0, 0, 0, 0.25); }
+  .form form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #efefef;
+    padding: 3px 4px; }
+    .form form span {
+      font: normal 1.15rem/100% "helvetica", sans-serif;
+      color: #222;
+      padding: 0 4px;
+      vertical-align: top; }
   .form .input {
-    padding: 16px;
-    width: 50%;
-    max-width: 200px;
-    border: 1px solid #ededed;
+    border: none;
     font: normal 1rem/100% "Dosis", sans-serif;
-    margin: 0; }
+    color: #222;
+    margin: 0;
+    width: 100%; }
+    .form .input:focus {
+      outline: none; }
   .form button.btn {
     font-size: 1.5rem;
-    padding: 12px 8px;
+    padding: 4px;
     border: none;
     background: none;
     margin: 0 0 0 4px; }
@@ -122,11 +148,41 @@ h1 {
   font: 400 2rem/100% "Dosis", sans-serif; }
 
 h2 {
-  font: 400 1.5rem/100% "Dosis", sans-serif; }
+  font: 400 1.5rem/120% "Dosis", sans-serif;
+  padding: 0 0 4px;
+  vertical-align: middle; }
+  h2 span {
+    background-color: #fbc619;
+    padding: 4px; }
+
+h4 {
+  font: 700 2.5rem/120% "Dosis", sans-serif;
+  padding: 0 0 0 16px; }
 
 .site-title {
   font-weight: 700;
-  padding: 32px 0 0; }
+  font-size: 1.25rem;
+  width: 224px;
+  padding-left: 56px;
+  text-align: left;
+  vertical-align: middle; }
+
+.empty-message {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  font: 700 2.25rem/120% "Dosis", sans-serif;
+  color: #AAA;
+  max-width: 400px;
+  margin: 0 auto; }
+
+img.logo {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  display: inline-block;
+  height: 5rem; }
 
 .dashboard.hidden {
   position: absolute;
