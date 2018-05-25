@@ -16,6 +16,7 @@ class Dashboard extends Component {
             engagementRateJSX = 0;
         }
 
+        //Doughnut Chart: Followers to Following 
         let chart_1_data = {
             labels: ['Followers', 'Following'],
             datasets: [{
@@ -26,6 +27,20 @@ class Dashboard extends Component {
         }
 
         let chart_1_options = {
+            maintainAspectRatio: false,
+        }
+
+        //Doughnut Chart: Faves to Retweets
+        let chart_2_data = {
+            labels: ['Faves', 'Retweets'],
+            datasets: [{
+                data: [this.props.favTotal, this.props.retweetTotal],
+                backgroundColor: ['salmon', 'red'],
+                borderColor: 'rgba(0,0,0,0)'
+            }]
+        }
+
+        let chart_2_options = {
             maintainAspectRatio: false,
         }
 
@@ -42,7 +57,8 @@ class Dashboard extends Component {
                 <h2>Faves: {this.props.favTotal}</h2>
                 <h2>Engagement Rate: {engagementRateJSX}%</h2>
 
-                <Doughnut data={chart_1_data} options={chart_1_options} />
+                <Doughnut data={chart_1_data} options={chart_1_options} width={250} height={250}/>
+                <Doughnut data={chart_2_data} options={chart_2_options} width={250} height={250} /> 
                 
                 
             </div>
