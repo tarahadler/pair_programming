@@ -128,11 +128,11 @@ class Dashboard extends Component {
 
         // how much engagement they have
         if (engagementRateJSX > 0.7) {
-            score += 20;
+            score += 16;
         } else if (engagementRateJSX > 0.2) {
-            score += 15;
+            score += 11;
         } else if (engagementRateJSX > 0.02) {
-            score += 10;
+            score += 7;
         } else {
             score += 0;
         }
@@ -150,6 +150,11 @@ class Dashboard extends Component {
             score += 2;
         } else {
             score += 0;
+        }
+
+        // Do they have more followers than they are following
+        if (this.props.followersTotal > this.props.followingTotal) {
+            score += 4
         }
 
 
