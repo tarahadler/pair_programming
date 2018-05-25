@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
+import Dashboard from './Dashboard';
+
 
 //STATE
 class App extends Component {
@@ -52,6 +55,8 @@ onSubmit = (e, username) => {
 
 
 
+
+
   render() {
     return (
       <div className="App">
@@ -62,7 +67,21 @@ onSubmit = (e, username) => {
               Submit name 
           </button> 
         </form>
-      
+        <Route 
+          path='/dashboard' 
+          render={()=> <Dashboard 
+            verifiedStatus={this.state.verifiedStatus}
+            followersTotal={this.state.followersTotal} 
+            followingTotal={this.state.followingTotal}
+            tweetTotal={this.state.tweetTotal} 
+            retweetArr={this.state.retweetArr}
+            retweetTotal={this.state.retweetTotal}
+            favArr={this.state.favArr}
+            favTotal={this.state.favTotal}
+            username={this.state.username}
+            />} 
+          />
+    
       </div>
     );
   }
