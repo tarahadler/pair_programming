@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Line, Doughnut} from 'react-chartjs-2';
 
 class Dashboard extends Component {
 
@@ -15,6 +16,19 @@ class Dashboard extends Component {
             engagementRateJSX = 0;
         }
 
+        let chart_1_data = {
+            labels: ['Followers', 'Following'],
+            datasets: [{
+                data: [this.props.followersTotal, this.props.followingTotal],
+                backgroundColor: ['#DED419', '#78BDA7'],
+                borderColor: 'rgba(0,0,0,0)'
+            }]
+        }
+
+        let chart_1_options = {
+            maintainAspectRatio: false,
+        }
+
         return (
             <div>
                 <h1>This {this.props.username}'s dashboard.</h1>
@@ -28,6 +42,7 @@ class Dashboard extends Component {
                 <h2>Faves: {this.props.favTotal}</h2>
                 <h2>Engagement Rate: {engagementRateJSX}%</h2>
 
+                <Doughnut data={chart_1_data} options={chart_1_options} />
                 
                 
             </div>
