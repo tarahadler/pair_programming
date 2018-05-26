@@ -97,6 +97,7 @@ class App extends Component {
 
             {/* Message if dashboard not in view */}
             <section className="empty-message">
+              <i className="fab fa-twitter"></i><br />
               { emptyStateMessage }
             </section>
 

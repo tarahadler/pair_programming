@@ -4,7 +4,7 @@
 @import "reset";
 
 body {
-    background: #e3e3e3;
+    background: #e2e2e2;
 }
 
 .wrapper {
@@ -83,6 +83,7 @@ header.dashboard__header {
 
 .form {
     position: relative;
+    z-index: 10;
     display: flex;
     align-items: center;
     padding: $padding--xs;
@@ -187,4 +188,5 @@ img.logo {
 
 .dashboard.visible {
     position: relative;
+    background: #e2e2e2;
 }
