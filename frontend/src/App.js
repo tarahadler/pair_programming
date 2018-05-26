@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import Dashboard from './Dashboard';
-import Home from './Home';
 
 class App extends Component {
 
@@ -82,7 +80,7 @@ class App extends Component {
             
             {/* Top section */}
             <section className="form">
-              <img src="/graph_animated.svg" className="logo" />
+              <img src="/graph_animated.svg" className="logo" alt="logo" title="Twitter Sitter" />
               <h1 className="site-title">
                 Twitter Sitter
               </h1>
