@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import {Line, Doughnut} from 'react-chartjs-2';
+import { Line, Doughnut } from 'react-chartjs-2';
+import { Tweet } from 'react-twitter-widgets'
 
 class Dashboard extends Component {
+
+    componentDidMount() {
+        // twttr.widgets.load();
+    }
+
 
     render() {
 
@@ -234,7 +240,9 @@ class Dashboard extends Component {
                     </article>
 
                     <article className="grid__item">
-                        <blockquote className="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">✔️ updated Tweet compose box <br/><br/>The new Tweet compose box makes it possible for you to move more easily between your Tweet and timeline, so all of your Tweets are on point.</p>&mdash; Twitter (@Twitter) <a href="https://twitter.com/Twitter/status/999033114197446661?ref_src=twsrc%5Etfw">May 22, 2018</a></blockquote>
+                        {/* <blockquote className="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">✔️ updated Tweet compose box <br/><br/>The new Tweet compose box makes it possible for you to move more easily between your Tweet and timeline, so all of your Tweets are on point.</p>&mdash; Twitter (@Twitter) <a href="https://twitter.com/Twitter/status/999033114197446661?ref_src=twsrc%5Etfw">May 22, 2018</a></blockquote> */}
+                        {/* <Tweet tweetId='841418541026877441' /> */}
+                        TWEET EMBED
                     </article>
                     
                     {/* Old stuff */}

@@ -57,7 +57,7 @@ app.post('/username', (req, res) => {
         }
 
         // Hit endpoint for user timeline/statuses
-        client.get('statuses/user_timeline', { screen_name: username, count: 100 }, function(error, tweets, response) {
+        client.get('statuses/user_timeline', { screen_name: username, include_rts: false, count: 150 }, function(error, tweets, response) {
 
             // if there's an error, console log it
             if(error) {
@@ -66,6 +66,7 @@ app.post('/username', (req, res) => {
             }
 
             // otherwise get the last 100 tweet objects
+
             // these will be sent newest to oldest
             let the_tweets = JSON.parse(response.body);
 
@@ -79,12 +80,12 @@ app.post('/username', (req, res) => {
                 return acc + curr.favorite_count
             }, 0);
 
-            // get an array of numbers of retweets for last 100 items
+            // get an array of numbers of retweets for last 150 (or less) items
             let retweet_count = the_tweets.map((elem) => {
                 return elem.retweet_count
             });
 
-            // get an array of numbers of favourites for last 100 items
+            // get an array of numbers of favourites for last 150 (or less) items
             let favorite_count = the_tweets.map((elem) => {
                 return elem.favorite_count
             });
