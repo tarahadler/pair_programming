@@ -68,12 +68,25 @@ class Dashboard extends Component {
         let trimmedArrSorted = joinedArrs.sort(function(a,b) {
             return a - b;
         });
-
+        
 
         // once we know page is loaded, set the yAxisMax to be the highest number in our joined
         // arrays times 1.1 - will be used to set a yAxes on our line chart
         if(this.props.username !== "") {
-            yAxisMax = Math.ceil((trimmedArrSorted[trimmedArrSorted.length - 1] * 1.1));
+
+            // find out how long (as in how many digits) the highest number is
+            let digits = (trimmedArrSorted[trimmedArrSorted.length - 1].toString().length);
+
+            let multiplier = '1';
+            for (let i = 1; i < digits; i++) {
+                multiplier += '0';
+            }
+
+            // Divide by 2, because chart js will step by half (i.e. 10000, 15000, 20000, etc)
+            multiplier = multiplier / 2;
+
+            // create a max yAxis that is rounded up to nearest major number (i.e. if biggest num is 14567 round to 15000)
+            yAxisMax = Math.ceil(trimmedArrSorted[trimmedArrSorted.length - 1] / multiplier) * multiplier;
         }
 
         // Line Chart: Faves and retweets over time
